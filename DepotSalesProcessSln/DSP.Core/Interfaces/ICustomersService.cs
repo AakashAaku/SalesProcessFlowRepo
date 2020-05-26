@@ -7,6 +7,6 @@ namespace DSP.Core.Interfaces
 {
     public interface ICustomersService
     {
-        IEnumerable<CustomersDTO> GetAllCustomer();
+        CustomersDTO GetAllCustomer();
     }
 }
