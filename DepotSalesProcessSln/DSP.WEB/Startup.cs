@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using DSP.WEB.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using DSP.Data.Context;
 
 namespace DSP.WEB
 {
@@ -41,6 +42,11 @@ namespace DSP.WEB
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddDbContext<DSPMainDbContext>(option =>
+            {
+                option.UseSqlServer(Configuration.GetConnectionString("DSPMainDbConnection"));
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
