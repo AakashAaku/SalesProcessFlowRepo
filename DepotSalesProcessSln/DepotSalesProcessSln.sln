@@ -15,9 +15,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{3B379EFA-447
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{FCC1893C-DF08-48E1-A914-DF3FD423E1A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSP.WEB", "DSP.WEB\DSP.WEB.csproj", "{D983C028-DABC-4402-A5D3-239530619AB0}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D983C028-DABC-4402-A5D3-239530619AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D983C028-DABC-4402-A5D3-239530619AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D983C028-DABC-4402-A5D3-239530619AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D983C028-DABC-4402-A5D3-239530619AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D983C028-DABC-4402-A5D3-239530619AB0} = {3B379EFA-447A-49C4-B6D7-843862568C90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61088672-32FA-4977-B669-ED9208D73A25}
