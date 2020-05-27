@@ -1,0 +1,25 @@
+﻿@model DSP.Core.DTO.CustomersDTO
+
+<div class="container body-content">
+    <div class="row content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach(var cust in Model.Customers)
+               {
+                   <tr>
+                       <td>@cust.Name</td>
+                       <td>@cust.Address</td>
+                       <td>@cust.PhoneNumber</td>
+                   </tr>
+               }
+            </tbody>
+        </table>
+    </div>
+</div>
