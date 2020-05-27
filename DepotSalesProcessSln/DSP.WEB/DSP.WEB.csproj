@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DSP.Data\DSP.Data.csproj" />
+    <ProjectReference Include="..\DSP.DependencyContainer\DSP.DependencyContainer.csproj" />
   </ItemGroup>
 
 </Project>

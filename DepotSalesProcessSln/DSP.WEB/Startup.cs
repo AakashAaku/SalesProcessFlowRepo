@@ -14,6 +14,7 @@ using DSP.WEB.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DSP.Data.Context;
+using DSP.DependencyContainer;
 
 namespace DSP.WEB
 {
@@ -84,8 +85,8 @@ namespace DSP.WEB
 
         public static void RegisterServices(IServiceCollection services)
         {
-            throw new NotImplementedException();
-             //InjectionContainer.RegisterServices(services);
+            //throw new NotImplementedException();
+             InjectionContainer.RegisterServices(services);
         }
     }
 }

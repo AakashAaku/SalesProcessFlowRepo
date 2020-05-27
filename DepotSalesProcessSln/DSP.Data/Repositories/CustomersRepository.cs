@@ -10,6 +10,7 @@ namespace DSP.Data.Repositories
     public class CustomersRepository : ICustomersRepository
     {
 
+        // This is default entity framework implementation for accessing data 
         private DSPMainDbContext _context;
 
         public CustomersRepository(DSPMainDbContext dbContext)
@@ -21,5 +22,7 @@ namespace DSP.Data.Repositories
         {
             return _context.Customers;
         }
+
+        //Here we can added 
     }
 }
