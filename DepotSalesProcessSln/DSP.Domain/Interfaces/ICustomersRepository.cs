@@ -8,5 +8,7 @@ namespace DSP.Domain.Interfaces
     public interface ICustomersRepository
     {
         IEnumerable<Customers> GetAllCustomers();
+        Customers GetCustomerById(int id);
+
     }
 }
