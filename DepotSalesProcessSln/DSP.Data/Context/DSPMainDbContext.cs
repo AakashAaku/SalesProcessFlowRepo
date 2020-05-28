@@ -14,5 +14,8 @@ namespace DSP.Data.Context
         }
 
         public DbSet<Customers> Customers { get; set; }
+        public DbSet<ITN_OPRO> ITN_OPRO { get; set; }
+
+        public DbSet<ITN_PRO1> ITN_PRO1 { get; set; }
     }
 }
