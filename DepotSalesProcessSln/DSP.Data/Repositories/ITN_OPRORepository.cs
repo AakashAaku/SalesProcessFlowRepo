@@ -29,5 +29,30 @@ namespace DSP.Data.Repositories
             //_connectionString = "Data Source=DSPMainDb;Initial Catalog=DataManagement;Integrated Security=True";
             //_dbConnection = new SqlConnection(_connectionString);
         }
+
+        public void DeleteITN_OPRO(int bookId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ITN_OPRO> GetAllITN_OPRO()
+        {
+            return dbConnection.Query<ITN_OPRO>("SELECT * FROM ITN_OPRO");
+        }
+
+        public ITN_OPRO GetITN_OPROById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertITN_OPRO(ITN_OPRO itn_opro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateITN_OPRO(ITN_OPRO itn_opro)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
