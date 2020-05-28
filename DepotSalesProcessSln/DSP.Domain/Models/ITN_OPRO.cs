@@ -74,4 +74,5 @@ namespace DSP.Domain.Models
 
         public ICollection<ITN_PRO1> ITN_PRO1 { get; set; }
     }
+    
 }

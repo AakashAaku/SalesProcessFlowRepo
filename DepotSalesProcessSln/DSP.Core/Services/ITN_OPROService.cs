@@ -15,5 +15,13 @@ namespace DSP.Core.Services
         {
             _itnRepository = itnRepository;
         }
+
+        public ITN_OPRODTO GetAllITN_OPRO()
+        {
+            return new ITN_OPRODTO
+            {
+                //Customers = _customerRepository.GetAllCustomers()
+            };
+        }
     }
 }
