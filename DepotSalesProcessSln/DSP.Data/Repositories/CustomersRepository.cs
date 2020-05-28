@@ -1,13 +1,9 @@
 ﻿using Dapper;
 using DSP.Data.Context;
 using DSP.Domain.Interfaces;
-using DSP.Domain.Interfaces.BaseInterface;
 using DSP.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Text;
 
 namespace DSP.Data.Repositories
 {

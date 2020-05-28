@@ -40,7 +40,9 @@ namespace DSP.WEB
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DSPIdentityConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+
+          //  services.AddDefaultIdentity<IdentityUser>()
+          services.AddIdentity<IdentityUser,IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
