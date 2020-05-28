@@ -57,21 +57,21 @@ namespace DSP.Domain.Models
 
         [MaxLength(30)]
         public string Remarks { get; set; }
-
+        [MaxLength(10)]
         public string PORefNo { get; set; }
-
+        [MaxLength(10)]
         public string SORefNo { get; set; }
 
         public DateTime CreatedDate { get; set; }
-
+        [MaxLength(150)]
         public string CreatedBy { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
-
+        [MaxLength(150)]
         public string UpdatedBy { get; set; }
-
+        [MaxLength(2)]
         public string DeletedFlag { get; set; }
 
-
+        public ICollection<ITN_PRO1> ITN_PRO1 { get; set; }
     }
 }

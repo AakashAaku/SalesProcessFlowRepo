@@ -44,17 +44,20 @@ namespace DSP.Domain.Models
         public string Warehouse { get; set; }
 
         public DateTime CreatedDate { get; set; }
-
+        [Required]
+        [MaxLength(150)]
         public string CreatedBy { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
-
+        [MaxLength(150)]
         public string UpdatedBy { get; set; }
-
+        [MaxLength(2)]
         public string DeletedFlag { get; set; }
 
         public int SERIAL_NO { get; set; }
 
         public int? BATCH_NO { get; set; }
+
+        public ITN_OPRO ITN_OPRO { get; set; }
     }
 }

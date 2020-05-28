@@ -12,7 +12,13 @@ namespace DSP.Data.Context
         {
 
         }
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<ITN_PRO1>()
+            .HasOne<ITN_OPRO>(s => s.ITN_OPRO)
+            .WithMany(g => g.ITN_PRO1)
+            .HasForeignKey(s => s.ITN_PROID);
+    }
         public DbSet<Customers> Customers { get; set; }
         public DbSet<ITN_OPRO> ITN_OPRO { get; set; }
 
