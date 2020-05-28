@@ -15,6 +15,10 @@ namespace DSP.DependencyContainer
         {
             services.AddScoped<ICustomersService, CustomerServices>();
             services.AddScoped<ICustomersRepository, CustomersRepository>();
+
+            services.AddScoped<ILicenseService, LicenseService>();
+            services.AddScoped<ILicenseRepository, LicenseRepository>();
+            //services.AddScoped<IdentityUser, ApplicationUser>();
         }
     }
 }

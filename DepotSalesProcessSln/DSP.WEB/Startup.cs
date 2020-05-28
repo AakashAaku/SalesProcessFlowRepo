@@ -41,23 +41,40 @@ namespace DSP.WEB
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DSPIdentityConnection")));
 
-          //  services.AddDefaultIdentity<IdentityUser>()
-          services.AddIdentity<IdentityUser,IdentityRole>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //  services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                  .AddDefaultUI(UIFramework.Bootstrap4)
+                  .AddEntityFrameworkStores<ApplicationDbContext>()
+                  .AddDefaultTokenProviders();
 
             services.AddDbContext<DSPMainDbContext>(option =>
             {
                 option.UseSqlServer(Configuration.GetConnectionString("DSPMainDbConnection"));
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddRazorPagesOptions(options =>
+                {
+                    options.AllowAreas = true;
+                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+                });
 
-            RegisterServices(services);
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            RegisterDependencyInjectionServices(services);
+
+            //Injection For Identity User and Application User
+            //services.AddScoped<IdentityUser, ApplicationUser>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -83,12 +100,35 @@ namespace DSP.WEB
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            CreateUserRole(serviceProvider).Wait();
         }
 
-        public static void RegisterServices(IServiceCollection services)
+        public static void RegisterDependencyInjectionServices(IServiceCollection services)
         {
             //throw new NotImplementedException();
              InjectionContainer.RegisterServices(services);
         }
+
+
+        private async Task CreateUserRole(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            IdentityResult rolResult;
+
+            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
+            if (!roleCheck)
+            {
+                rolResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+
+            }
+
+            ApplicationUser user = await UserManager.FindByEmailAsync("superuser@development.com");
+            await UserManager.AddToRoleAsync(user, "Admin");
+        }
+
+        
     }
 }

@@ -18,7 +18,7 @@ namespace DSP.Data.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+           //Implement any dispoable content 
         }
     }
 }

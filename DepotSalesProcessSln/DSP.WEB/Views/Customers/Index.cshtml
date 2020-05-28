@@ -1,25 +1,22 @@
 ﻿@model DSP.Core.DTO.CustomersDTO
-
-<div class="container body-content">
-    <div class="row content">
-        <table>
-            <thead>
+<div class="row">
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cust in Model.Customers)
+            {
                 <tr>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Contact</th>
+                    <th scope="row">@cust.Name</th>
+                    <th>@cust.Address</th>
+                    <th>@cust.PhoneNumber</th>
                 </tr>
-            </thead>
-            <tbody>
-               @foreach(var cust in Model.Customers)
-               {
-                   <tr>
-                       <td>@cust.Name</td>
-                       <td>@cust.Address</td>
-                       <td>@cust.PhoneNumber</td>
-                   </tr>
-               }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
 </div>
