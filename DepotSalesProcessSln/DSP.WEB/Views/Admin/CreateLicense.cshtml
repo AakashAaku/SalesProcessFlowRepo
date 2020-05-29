@@ -11,6 +11,7 @@
             <button type="submit" class="btn btn-primary">Upload File</button>
         </div>
     </div>
+    <span id="fileNameLister"></span>
 </form>
 <hr />
 <div class="row">
@@ -31,3 +32,9 @@
         </tbody>
     </table>
 </div>
+
+<script>
+document.getElementById('inputGroupFile01').onchange = function () {
+    document.getElementById("fileNameLister").innerText = this.value;
+};
+</script>
