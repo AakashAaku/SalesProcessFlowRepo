@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/DepotSalesProcessSln/DSP.WEB/appsettings.json
+/DepotSalesProcessSln/DSP.Data/Repositories/BaseRepository.cs
