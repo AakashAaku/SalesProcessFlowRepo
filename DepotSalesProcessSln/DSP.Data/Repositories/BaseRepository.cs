@@ -12,7 +12,7 @@ namespace DSP.Data.Repositories
 
         public BaseRepository()
         {
-            string connectionString = "Server=DESKTOP-CQMNJQN\\SQLEXPRESS;Database=DSPMainDB;Trusted_Connection=True;MultipleActiveResultSets=true";
+            string connectionString = "Server=DESKTOP-F4EP065\\SQLEXPRESS;Database=DSPMainDB;Trusted_Connection=True;MultipleActiveResultSets=true";
             dbConnection = new SqlConnection(connectionString);
         }
 

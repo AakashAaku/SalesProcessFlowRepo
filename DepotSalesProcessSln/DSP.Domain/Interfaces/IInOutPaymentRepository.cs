@@ -5,9 +5,11 @@ using System.Text;
 
 namespace DSP.Domain.Interfaces
 {
-    public interface IInOutPayment
+    public interface IInOutPaymentRepository
     {
+
         IEnumerable<ITN_BOVPM> GetInOutPayment(string id);
-        bool IncomingPayment(string id);
+        bool DeleteInOutPayment(string id);
+        bool SaveUpdateIncomingPayment(ITN_BOVPM objiTN_BOVPM);
     }
 }

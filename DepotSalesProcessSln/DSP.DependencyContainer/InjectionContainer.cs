@@ -1,7 +1,10 @@
 ﻿using DSP.Core.Interfaces;
+using DSP.Core.Interfaces.Purchase;
 using DSP.Core.Services;
+using DSP.Core.Services.Purchase;
 using DSP.Data.Repositories;
 using DSP.Domain.Interfaces;
+using DSP.Domain.Interfaces.Purchase;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -22,6 +25,17 @@ namespace DSP.DependencyContainer
             services.AddScoped<IITN_OPROService, ITN_OPROService>();
             services.AddScoped<IITN_OPRORepository, ITN_OPRORepository>();
             //services.AddScoped<IdentityUser, ApplicationUser>();
+
+            services.AddScoped<IInOutPaymentRepository, InOutPaymentRepository>();
+            services.AddScoped<IInOutPaymentService, InOutPaymentService>();
+
+            services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
+            services.AddScoped<IPurchaseReturnRepository, PurchaseRetrunRepository>();
+            services.AddScoped<IPurchaseInvoiceRepository, PurchaseInvoiceRepository>();
+
+            services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
+            services.AddScoped<IPurchaseInvoiceService, PurchaseInvoiceService>();
+            services.AddScoped<IPurchaseReturnService, PurchaseReturnService>();
         }
     }
 }
