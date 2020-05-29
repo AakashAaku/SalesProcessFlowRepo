@@ -101,7 +101,7 @@ namespace DSP.WEB
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            CreateUserRole(serviceProvider).Wait();
+           // CreateUserRole(serviceProvider).Wait();
         }
 
         public static void RegisterDependencyInjectionServices(IServiceCollection services)

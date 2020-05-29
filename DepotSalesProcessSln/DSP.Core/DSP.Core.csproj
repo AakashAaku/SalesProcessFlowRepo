@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DSP.Data\DSP.Data.csproj" />
     <ProjectReference Include="..\DSP.Domain\DSP.Domain.csproj" />
   </ItemGroup>
 

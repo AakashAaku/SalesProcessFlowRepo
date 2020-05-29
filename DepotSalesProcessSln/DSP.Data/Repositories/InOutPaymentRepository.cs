@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DSP.Data.Context;
+using DSP.Domain.Interfaces;
 using DSP.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace DSP.Data.Repositories
 {
-    public class InOutPaymentRepository:BaseRepository
+    public class InOutPaymentRepository:BaseRepository, IInOutPaymentRepository
     {
         private DSPMainDbContext _context;
         public InOutPaymentRepository(DSPMainDbContext dbContext)
@@ -42,12 +43,12 @@ namespace DSP.Data.Repositories
                 return objEnum;
             }
         }
-        public bool IncomingPayment(string id)
+        public bool DeleteInOutPayment(string id)
         {
-            int deletedRows = this.dbConnection.Execute("UPDATE ITN_BOVPM SET DeletedFlag = 'N',UpdatedBy ='ADMIN', @UpdatedBy,UpdatedDate =GETDATE() where IncPayId = @IncPayId", new { IncPayId = id });
+            int deletedRows = this.dbConnection.Execute("UPDATE ITN_BOVPM SET DeletedFlag = 'N',UpdatedBy ='ADMIN',UpdatedDate =GETDATE() where IncPayId = @IncPayId", new { IncPayId = id });
             if (deletedRows > 0)
             {
-                int deletedRowsC = this.dbConnection.Execute("UPDATE ITN_BVPM1 SET DeletedFlag = 'N',UpdatedBy ='ADMIN', @UpdatedBy,UpdatedDate =GETDATE() where IncPayId = @IncPayId", new { IncPayId = id });
+                int deletedRowsC = this.dbConnection.Execute("UPDATE ITN_BVPM1 SET DeletedFlag = 'N',UpdatedBy ='ADMIN',UpdatedDate =GETDATE() where IncPayId = @IncPayId", new { IncPayId = id });
                 if (deletedRowsC > 0)
                 {
                     return true;
