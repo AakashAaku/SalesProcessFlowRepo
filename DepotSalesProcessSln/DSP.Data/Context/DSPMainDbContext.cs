@@ -18,10 +18,23 @@ namespace DSP.Data.Context
             .HasOne<ITN_OPRO>(s => s.ITN_OPRO)
             .WithMany(g => g.ITN_PRO1)
             .HasForeignKey(s => s.ITN_PROID);
-    }
+
+            modelBuilder.Entity<ITN_PDN1>()
+           .HasOne<ITN_OPDN>(s => s.ITN_OPDN)
+           .WithMany(g => g.ITN_PDN1)
+           .HasForeignKey(s => s.ITN_OPDNID);
+        }
+
+
+
         public DbSet<Customers> Customers { get; set; }
         public DbSet<ITN_OPRO> ITN_OPRO { get; set; }
 
         public DbSet<ITN_PRO1> ITN_PRO1 { get; set; }
+
+
+        public DbSet<ITN_OPDN> ITN_OPDN { get; set; }
+
+        public DbSet<ITN_PDN1> ITN_PDN1 { get; set; }
     }
 }
