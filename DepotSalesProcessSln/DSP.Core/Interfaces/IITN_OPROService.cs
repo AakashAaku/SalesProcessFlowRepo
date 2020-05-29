@@ -7,6 +7,12 @@ namespace DSP.Core.Interfaces
 {
     public interface IITN_OPROService
     {
-        ITN_OPRODTO GetAllITN_OPRO();
+        ITN_OPRODTO GetAllStockTransferReq();
+
+        bool SaveStockTransferReq(ITN_OPRODTO str);
+
+        bool UpdateStockTransferReq(ITN_OPRODTO str);
+
+        ITN_OPRODTO GetStockTransferRequestById(string id);
     }
 }

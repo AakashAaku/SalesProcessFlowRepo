@@ -16,12 +16,69 @@ namespace DSP.Core.Services
             _itnRepository = itnRepository;
         }
 
-        public ITN_OPRODTO GetAllITN_OPRO()
+        public ITN_OPRODTO GetAllStockTransferReq()
         {
-            return new ITN_OPRODTO
+
+            try
             {
-                //Customers = _customerRepository.GetAllCustomers()
-            };
+                return new ITN_OPRODTO
+                {
+                    ITN_OPROs = _itnRepository.GetAllStockTransferRequest()
+                };
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error while inserting data : " + ex.StackTrace);
+            }
+            
+        }
+        public ITN_OPRODTO GetStockTransferRequestById(string id)
+        {
+
+            try
+            {
+                return new ITN_OPRODTO
+                {
+                    ITN_OPROs = _itnRepository.GetStockTransferRequestById(id)
+                };
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error while getting data : " + ex.StackTrace);
+            }
+
+        }
+
+        public bool SaveStockTransferReq(ITN_OPRODTO str)
+        {
+            try
+            {
+                var result = _itnRepository.InsertStockTransferRequest(str.ITN_OPRO);
+                return result;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error while getting data : " + ex.StackTrace);
+            }
+        }
+
+        public bool UpdateStockTransferReq(ITN_OPRODTO str)
+        {
+            try
+            {
+                var result = _itnRepository.UpdateStockTransferRequest(str.ITN_OPRO);
+                return result;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error while update data : " + ex.StackTrace);
+            }
         }
     }
 }
