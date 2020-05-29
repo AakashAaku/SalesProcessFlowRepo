@@ -1,0 +1,156 @@
+﻿@model IEnumerable<DSP.Domain.Models.ITN_BOVPM>
+
+@{
+    ViewData["Title"] = "GetInOutPayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetInOutPayment</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IncPayId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustVenName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustVenCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustVenFlag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Branch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RefernceNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreditCard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankTransfer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocumnentOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeletedFlag)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncPayId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustVenName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustVenCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustVenFlag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Branch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RefernceNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cash)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankTransfer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumnentOwner)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedFlag)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
