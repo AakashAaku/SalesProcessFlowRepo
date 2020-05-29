@@ -18,6 +18,9 @@ namespace DSP.DependencyContainer
 
             services.AddScoped<ILicenseService, LicenseService>();
             services.AddScoped<ILicenseRepository, LicenseRepository>();
+
+            services.AddScoped<IITN_OPROService, ITN_OPROService>();
+            services.AddScoped<IITN_OPRORepository, ITN_OPRORepository>();
             //services.AddScoped<IdentityUser, ApplicationUser>();
         }
     }
