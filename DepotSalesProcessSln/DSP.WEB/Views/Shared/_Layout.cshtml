@@ -35,25 +35,72 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            if (User.IsInRole("Admin"))
-                            {
-                               
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Admin
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="Index">Customer</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateRole">Role</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateLicense">License</a>
-                                    </div>
-                                </li>
-                            }
-                        }
+                        @*@if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("Admin"))
+            {*@
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @*<a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="Index">Customer</a>
+        <div class="dropdown-divider"></div>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateRole">Role</a>
+        <div class="dropdown-divider"></div>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateLicense">License</a>*@
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateLicense">License Manager</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">User Creation</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateRole">Configuration</a>
+
+
+                            </div>
+                        </li>
+                        @*}
+        }*@
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Branch
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="Index">Customer & Vendor</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateRole">Stock Trans. Request</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateLicense">Stock Receipt</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateLicense">Stock Return</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateLicense">Sales Invoice</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateLicense">Sales Credit Note</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateLicense">Purchase Order</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Depot
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="Index">Customer & Vendor</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateRole">Stock Trans. Request</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateLicense">Stock Receipt</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateLicense">Stock Return</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateLicense">Sales Invoice</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="CreateLicense">Sales Credit Note</a>
+                            </div>
+                        </li>
 
                     </ul>
                 </div>
