@@ -9,7 +9,7 @@ namespace DSP.Core.DTO
     public class ITN_OPRODTO
     {
         public ITN_OPRO ITN_OPRO { get; set; }
-        public IEnumerable<ITN_OPRO> ITN_OPRO { get; set; }
+        public IEnumerable<ITN_OPRO> ITN_OPROs { get; set; }
         
     }
    

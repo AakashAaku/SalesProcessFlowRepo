@@ -11,7 +11,7 @@ namespace DSP.Domain.Interfaces
         IEnumerable<ITN_OPRO> GetStockTransferRequestById(string id);
         
         bool InsertStockTransferRequest(ITN_OPRO itn_opro);
-        bool DeleteStockTransferRequest(int Id);
+        //bool DeleteStockTransferRequest(int Id);
         bool UpdateStockTransferRequest(ITN_OPRO itn_opro);
     }
 }
