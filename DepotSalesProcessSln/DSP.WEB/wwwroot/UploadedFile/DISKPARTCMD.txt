@@ -1,0 +1,9 @@
+== Run CMD as Run as Administrator====================then
+diskpart <-
+list disk <-
+select disk #num
+clean
+create partition primary
+select partition 1
+active
+format fs=fat32 quick

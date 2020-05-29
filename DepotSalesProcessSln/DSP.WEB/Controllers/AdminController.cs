@@ -5,8 +5,9 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using DSP.Core.Interfaces;
 using DSP.WEB.Models;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,15 +16,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DSP.WEB.Controllers
 {
-    [Authorize(Roles ="Admin")]
+   // [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
-        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IHostingEnvironment _hostingEnvironment;
+       
 
         // GET: /<controller>/
-        public AdminController(RoleManager<IdentityRole> roleManager)
+        public AdminController(RoleManager<IdentityRole> roleManager,IHostingEnvironment hostingEnvironment)
         {
-            this.roleManager = roleManager;
+            this._roleManager = roleManager;
+            this._hostingEnvironment = hostingEnvironment;
+           
         }
 
 
@@ -33,6 +38,12 @@ namespace DSP.WEB.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public IActionResult UserManager()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateRole(RoleViewModel modal)
@@ -44,7 +55,7 @@ namespace DSP.WEB.Controllers
                     Name = modal.Name
                 };
 
-                IdentityResult result = await roleManager.CreateAsync(role);
+                IdentityResult result = await _roleManager.CreateAsync(role);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("CreateRole", "Admin");
@@ -73,23 +84,64 @@ namespace DSP.WEB.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateLicense(IFormFile file)
         {
-            if(file==null || file.Length == 0) return Content("File not selected");
-
-            string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-
-            fileName = this.CheckCorrectFileName(fileName);
-
-            using (FileStream output = System.IO.File.Create(this.GetPathAndFileName(fileName))) await file.CopyToAsync(output);
-
-            var result = new StringBuilder();
-            using(var stremReader = new StreamReader(file.OpenReadStream()))
+            if (file == null || file.Length == 0)
             {
-                while(stremReader.Peek() > 0)
-                {
-                    result.AppendLine(await stremReader.ReadLineAsync());
-                }
+                ViewBag.ErroMessage = "File Not Selected";
+                return View();
             }
 
+            string rootPath = this._hostingEnvironment.ContentRootPath;
+
+            string path = Path.Combine(this._hostingEnvironment.WebRootPath, "UploadedFile");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+
+            string fileName = Path.GetFileName(file.FileName);
+            string fileExt = Path.GetExtension(fileName);
+            var result = new StringBuilder();
+            using (FileStream fs = new FileStream(Path.Combine(path, fileName), FileMode.OpenOrCreate))
+            {
+                if (System.IO.File.Exists(path + "\\" + fileName))
+                {
+                    System.IO.File.Delete(fileName);
+                }
+                await file.CopyToAsync(fs);
+                int intbuffer = 5242880;
+                byte[] b = new byte[intbuffer];
+                UTF8Encoding temp = new UTF8Encoding(true);
+                while (fs.Read(b, 0, b.Length) > 0)
+                {
+                    result.AppendLine(temp.GetString(b));
+                }
+
+            }
+
+            
+            //var fileName = System.IO.Path.GetFileName(file.FileName);
+            //if (System.IO.File.Exists(fileName))
+            //{
+            //    System.IO.File.Delete(fileName);
+            //}
+
+            //string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+
+            //fileName = this.CheckCorrectFileName(fileName);
+
+            //using (FileStream output = System.IO.File.Create(this.GetPathAndFileName(fileName))) await file.CopyToAsync(output);
+
+            //var result = new StringBuilder();
+            //using (var stremReader = new StreamReader(file.OpenReadStream()))
+            //{
+            //    while (stremReader.Peek() > 0)
+            //    {
+            //        result.AppendLine(await stremReader.ReadLineAsync());
+            //    }
+            //}
+
+            ViewBag.SuccessMessage = "File Uploaded Successfully";
             return View();
         }
 
@@ -107,7 +159,7 @@ namespace DSP.WEB.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<IdentityRole> roleResult = roleManager.Roles.ToList();
+            IEnumerable<IdentityRole> roleResult = _roleManager.Roles.ToList();
             var roleList = new List<RoleViewModel>();
             foreach(var role in roleResult)
             {
