@@ -25,6 +25,8 @@ namespace DSP.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Active");
+
                     b.Property<string>("Approver");
 
                     b.Property<string>("BranchCode")
@@ -70,7 +72,7 @@ namespace DSP.Data.Migrations
 
                     b.HasIndex("VendorCustomerId");
 
-                    b.ToTable("AppUser");
+                    b.ToTable("AppUsers");
                 });
 
             modelBuilder.Entity("DSP.Domain.Models.Customers", b =>

@@ -8,7 +8,7 @@ namespace DSP.Domain.Models
 {
     public class Licenses
     {
-        [Key,ForeignKey("AppUser")]
+        [Key]
         public int LicensesId { get; set; } 
 
         [Required]

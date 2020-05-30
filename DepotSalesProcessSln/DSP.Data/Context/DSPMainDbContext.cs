@@ -13,6 +13,20 @@ namespace DSP.Data.Context
         {
 
         }
+
+        public DbSet<ITN_OPRO> ITN_OPRO { get; set; }
+
+        public DbSet<ITN_PRO1> ITN_PRO1 { get; set; }
+
+        public DbSet<VendorsCustomer> VendorCustomer { get; set; }
+
+        public DbSet<Licenses> Licenses { get; set; }
+
+        public DbSet<AppUsers> AppUsers { get; set; }
+
+        public DbSet<Customers> Customers { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
                modelBuilder.Entity<ITN_PRO1>()
@@ -44,15 +58,5 @@ namespace DSP.Data.Context
                 
 
         }
-
-
-        public DbSet<Customers> Customers { get; set; }
-        public DbSet<ITN_OPRO> ITN_OPRO { get; set; }
-
-        public DbSet<ITN_PRO1> ITN_PRO1 { get; set; }
-
-        public DbSet<VendorsCustomer> VendorCustomer { get; set; }
-
-        public DbSet<AppUsers> AppUser { get; set; }
     }
 }

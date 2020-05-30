@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DSP.Data.Migrations
 {
     [DbContext(typeof(DSPMainDbContext))]
-    [Migration("20200528144541_LicenseManagerTableAdded")]
-    partial class LicenseManagerTableAdded
+    [Migration("20200530065726_AgainTrackChangesOfTable")]
+    partial class AgainTrackChangesOfTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,62 @@ namespace DSP.Data.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DSP.Domain.Models.AppUsers", b =>
+                {
+                    b.Property<int>("AppUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Active");
+
+                    b.Property<string>("Approver");
+
+                    b.Property<string>("BranchCode")
+                        .IsRequired();
+
+                    b.Property<string>("ContactNo");
+
+                    b.Property<string>("CustomerCode")
+                        .IsRequired();
+
+                    b.Property<string>("EmailAddress");
+
+                    b.Property<int?>("LicenseAssignLicensesId");
+
+                    b.Property<string>("LicenseAvailablity");
+
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.Property<string>("SAPBranch")
+                        .IsRequired();
+
+                    b.Property<string>("Type")
+                        .IsRequired();
+
+                    b.Property<string>("UserName")
+                        .IsRequired();
+
+                    b.Property<string>("VendorCode")
+                        .IsRequired();
+
+                    b.Property<int>("VendorCustomerId");
+
+                    b.Property<string>("Warehouse")
+                        .IsRequired();
+
+                    b.Property<string>("WarehouseCode")
+                        .IsRequired();
+
+                    b.HasKey("AppUserId");
+
+                    b.HasIndex("LicenseAssignLicensesId");
+
+                    b.HasIndex("VendorCustomerId");
+
+                    b.ToTable("AppUsers");
+                });
 
             modelBuilder.Entity("DSP.Domain.Models.Customers", b =>
                 {
@@ -185,6 +241,81 @@ namespace DSP.Data.Migrations
                     b.HasIndex("ITN_PROID");
 
                     b.ToTable("ITN_PRO1");
+                });
+
+            modelBuilder.Entity("DSP.Domain.Models.Licenses", b =>
+                {
+                    b.Property<int>("LicensesId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<byte>("License");
+
+                    b.Property<string>("Type")
+                        .IsRequired();
+
+                    b.HasKey("LicensesId");
+
+                    b.ToTable("Licenses");
+                });
+
+            modelBuilder.Entity("DSP.Domain.Models.VendorsCustomer", b =>
+                {
+                    b.Property<int>("VendorCustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BillToAddress");
+
+                    b.Property<string>("Code")
+                        .IsRequired();
+
+                    b.Property<string>("ContactNumber");
+
+                    b.Property<string>("ContactPerson");
+
+                    b.Property<string>("ContractNo")
+                        .IsRequired();
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("EmailId");
+
+                    b.Property<string>("Group")
+                        .IsRequired();
+
+                    b.Property<string>("GroupCode")
+                        .IsRequired();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("PANVAT");
+
+                    b.Property<string>("Reference");
+
+                    b.Property<string>("Remarks");
+
+                    b.Property<string>("ShipToAddress");
+
+                    b.Property<string>("Type")
+                        .IsRequired();
+
+                    b.HasKey("VendorCustomerId");
+
+                    b.ToTable("VendorCustomer");
+                });
+
+            modelBuilder.Entity("DSP.Domain.Models.AppUsers", b =>
+                {
+                    b.HasOne("DSP.Domain.Models.Licenses", "LicenseAssign")
+                        .WithMany()
+                        .HasForeignKey("LicenseAssignLicensesId");
+
+                    b.HasOne("DSP.Domain.Models.VendorsCustomer", "VendorCustomer")
+                        .WithMany()
+                        .HasForeignKey("VendorCustomerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DSP.Domain.Models.ITN_PRO1", b =>

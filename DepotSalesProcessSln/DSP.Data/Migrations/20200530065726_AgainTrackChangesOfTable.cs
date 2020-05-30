@@ -2,7 +2,7 @@
 
 namespace DSP.Data.Migrations
 {
-    public partial class LicenseManagerTableAdded : Migration
+    public partial class AgainTrackChangesOfTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

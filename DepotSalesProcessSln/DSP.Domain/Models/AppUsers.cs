@@ -52,6 +52,8 @@ namespace DSP.Domain.Models
 
         public string LicenseAvailablity { get; set; }
 
+        public string Active { get; set; }
+
         public string Approver { get; set; }
     }
 }
