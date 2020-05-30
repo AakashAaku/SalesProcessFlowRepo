@@ -50,7 +50,7 @@ namespace DSP.DependencyContainer
 
 
             services.AddScoped<ISalesReturnService, SalesReturnService>();
-            services.AddScoped<ISalesReturnRepository, SalesReturnRepository>();
+            services.AddScoped<ISalesReturnRepository, SalesreturnRepository>();
         }
     }
 }

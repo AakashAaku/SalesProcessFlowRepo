@@ -9,7 +9,7 @@ using System.Text;
 
 namespace DSP.Data.Repositories
 {
-    public class SalesReturnRepository : BaseRepository, ISalesReturnRepository
+    public class SalesreturnRepository : BaseRepository, ISalesReturnRepository
     {
         public bool DeleteSalesReturn(string id)
         {
