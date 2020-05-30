@@ -75,7 +75,8 @@ namespace DSP.Data.Context
 
         public DbSet<ITN_INV1> ITN_INV1 { get; set; }
 
-        public DbSet<AppUsers> AppUser { get; set; }
+        public DbSet<AppUsers> AppUsers { get; set; } 
+        public DbSet<Licenses> Licenses { get; set; }
 
     }
 }
