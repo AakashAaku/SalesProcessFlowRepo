@@ -8,5 +8,6 @@ namespace DSP.Core.DTO
     public class PurchaseInvoiceDTO
     {
         public IEnumerable<ITN_BOPCH> PurchaseInvoice { get; set; }
+        public ITN_BOPCH PurInv { get; set; }
     }
 }

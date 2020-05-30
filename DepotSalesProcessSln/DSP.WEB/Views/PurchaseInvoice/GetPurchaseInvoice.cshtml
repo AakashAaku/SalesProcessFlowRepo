@@ -1,12 +1,10 @@
-﻿@model DSP.Core.DTO.InOutPaymentDTO
-
+﻿@model DSP.Core.DTO.PurchaseInvoiceDTO
 @{
-    ViewData["Title"] = "GetInOutPayment";
+    ViewData["Title"] = "GetPurchaseInvoice";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>GetInOutPayment</h1>
-
+<h1>GetPurchaseInvoice</h1>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -14,7 +12,8 @@
     <thead>
         <tr>
             <th scope="col">S.N.</th>
-            <th scope="col">Vendor/Customer Name</th>
+            <th scope="col">PanVatNumber</th>
+            <th scope="col">VendorName</th>
             <th scope="col">Email</th>
             <th scope="col">Branch</th>
 
@@ -22,14 +21,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.InOutPayment)
+        @foreach (var item in Model.PurchaseInvoice)
         {
         <tr>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.IncPayId)
-        </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.CustVenName)
+                @Html.DisplayFor(modelItem => item.PanVatNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
@@ -97,3 +96,4 @@
         }
     </tbody>
 </table>
+

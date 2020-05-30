@@ -1,0 +1,209 @@
+﻿@model DSP.Core.DTO.PurchaseInvoiceDTO
+@{
+    ViewData["Title"] = "SaveUpdatePurchaseInvoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>SaveUpdatePurchaseInvoice</h1>
+
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="PurInv.PanVatNumber"></label>
+            <input asp-for="PurInv.PanVatNumber" class="form-control" placeholder="Vendor Name">
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="PurInv.DocumentNo"></label>
+            <input asp-for="PurInv.DocumentNo" class="form-control" placeholder="Document No">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="PurInv.VendorName"></label>
+            <input asp-for="PurInv.VendorName" class="form-control" placeholder="Vendor Code">
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="PurInv.Status"></label>
+            <input asp-for="PurInv.Status" class="form-control" placeholder="Status">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="PurInv.Branch"></label>
+            <input asp-for="PurInv.Branch" class="form-control" placeholder="Branch">
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="PurInv.PostingDate"></label>
+            <input asp-for="PurInv.PostingDate" class="form-control datepicker" data-date-format="mm/dd/yyyy">
+
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="PurInv.RefernceNo"></label>
+            <input asp-for="PurInv.RefernceNo" class="form-control" placeholder="Reference No">
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="PurInv.DocumentNo"></label>
+            <input asp-for="PurInv.DocumentNo" class="form-control" placeholder="Contact Person">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="PurInv.Email"></label>
+            <input asp-for="PurInv.Email" class="form-control" placeholder="Email">
+        </div>
+        <div class="form-group col-md-6">
+
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input type="button" id="addRow" value="Add New Row" onclick="addRow()" />
+            <div id="cont"></div>  <!-- the container to add the TABLE -->
+            @*<table>
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                Item Description
+                            </th>
+                            <th scope="col">
+                                Item code
+                            </th>
+                            <th scope="col">
+                                Quantity
+                            </th>
+                            <th scope="col">
+                                Unit Price
+                            </th>
+                            <th scope="col">
+                                Discount%
+                            </th>
+                            <th scope="col">
+                                TaxCode
+                            </th>
+                            <th scope="col">
+                                Total Amount
+                            </th>
+                            <th scope="col">
+                                Tax Amount
+                            </th>
+                            <th scope="col">
+                                Ware House
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>*@
+        </div>
+
+    </div>
+    @*<div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Check me out
+                </label>
+            </div>
+        </div>*@
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            format: 'mm/dd/yyyy',
+            startDate: '-3d'
+        });
+
+        // first create TABLE structure with the headers.
+        function createTable() {
+            var empTable = document.createElement('table');
+            empTable.setAttribute('id', 'empTable'); // table id.
+
+            var tr = empTable.insertRow(-1);
+            for (var h = 0; h < arrHead.length; h++) {
+                var th = document.createElement('th'); // create table headers
+                th.innerHTML = arrHead[h];
+                tr.appendChild(th);
+            }
+
+            var div = document.getElementById('cont');
+            div.appendChild(empTable);  // add the TABLE to the container.
+        }
+    });
+
+    var arrHead = new Array();	// array for header.
+    arrHead = ['', 'Employee Name', 'Designation', 'Age'];
+
+
+
+    // now, add a new to the TABLE.
+    function addRow() {
+        var empTab = document.getElementById('empTable');
+
+        var rowCnt = empTab.rows.length;   // table row count.
+        var tr = empTab.insertRow(rowCnt); // the table row.
+        tr = empTab.insertRow(rowCnt);
+
+        for (var c = 0; c < arrHead.length; c++) {
+            var td = document.createElement('td'); // table definition.
+            td = tr.insertCell(c);
+
+            if (c == 0) {      // the first column.
+                // add a button in every new row in the first column.
+                var button = document.createElement('input');
+
+                // set input attributes.
+                button.setAttribute('type', 'button');
+                button.setAttribute('value', 'Remove');
+
+                // add button's 'onclick' event.
+                button.setAttribute('onclick', 'removeRow(this)');
+
+                td.appendChild(button);
+            }
+            else {
+                // 2nd, 3rd and 4th column, will have textbox.
+                var ele = document.createElement('input');
+                ele.setAttribute('type', 'text');
+                ele.setAttribute('value', '');
+
+                td.appendChild(ele);
+            }
+        }
+    }
+
+    // delete TABLE row function.
+    function removeRow(oButton) {
+        var empTab = document.getElementById('empTable');
+        empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // button -> td -> tr.
+    }
+</script>

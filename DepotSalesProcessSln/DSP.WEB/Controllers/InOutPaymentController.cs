@@ -23,11 +23,17 @@ namespace DSP.WEB.Controllers
             InOutPaymentDTO objDTO = _iInOutPaymentService.GetInOutPayment(id);
             return View(objDTO);
         }
+        [HttpGet]
+        public IActionResult SaveUpdateIncomingPayment()
+        {            
+            return View();
+        }
         public IActionResult DeleteInOutPayment(string id)
         {
              _iInOutPaymentService.DeleteInOutPayment(id);
             return View();
         }
+        [HttpPost]
         public IActionResult SaveUpdateIncomingPayment(ITN_BOVPM objiTN_BOVPM)
         {
             _iInOutPaymentService.SaveUpdateIncomingPayment(objiTN_BOVPM);
