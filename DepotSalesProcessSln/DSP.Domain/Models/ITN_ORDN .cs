@@ -4,18 +4,19 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+
 namespace DSP.Domain.Models
 {
-    public class ITN_OINV
+    public class ITN_ORDN
     {
         [Key]
         public int Id { get; set; }
         [DisplayName("Invoice Type")]
-        
+
         [MaxLength(20)]
         public string InvoiceType { get; set; }
         [DisplayName("PAN/VAT/Number")]
-      
+
         [MaxLength(20)]
         public string PANVATNumber { get; set; }
         [DisplayName("Customer Name")]
@@ -52,7 +53,7 @@ namespace DSP.Domain.Models
         [DisplayName("Document Owner")]
         [MaxLength(30)]
         public string DocumentOwner { get; set; }
-       
+
         [DisplayName("Total Before Discount")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal? TotalBeforeDiscount { get; set; }
@@ -73,13 +74,6 @@ namespace DSP.Domain.Models
         [MaxLength(30)]
         public string BaseEntry { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        [DisplayName("Amount Paid")]
-        public decimal? AmountPaid { get; set; }
-        [Column(TypeName = "decimal(18,2)")]
-        [DisplayName("Amount Return")]
-        public decimal? AmountReturn { get; set; }
-
         public DateTime CreatedDate { get; set; }
         [MaxLength(150)]
         public string CreatedBy { get; set; }
@@ -90,6 +84,6 @@ namespace DSP.Domain.Models
         [MaxLength(2)]
         public string DeletedFlag { get; set; }
 
-        public ICollection<ITN_INV1> ITN_INV1 { get; set; }
+        public ICollection<ITN_RDN1> ITN_RDN1 { get; set; }
     }
 }

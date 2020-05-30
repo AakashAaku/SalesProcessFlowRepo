@@ -50,6 +50,13 @@ namespace DSP.Data.Context
             modelBuilder.Entity<VendorsCustomer>()
                 .Property(vc => vc.Type)
                 .HasConversion(cv => cv.ToString(), cv => (UserType)Enum.Parse(typeof(UserType), cv));
+
+
+
+            modelBuilder.Entity<ITN_RDN1>()
+              .HasOne<ITN_ORDN>(s => s.ITN_ORDN)
+              .WithMany(g => g.ITN_RDN1)
+              .HasForeignKey(s => s.ITN_ORDNID);
         }
 
  
@@ -76,6 +83,10 @@ namespace DSP.Data.Context
         public DbSet<ITN_INV1> ITN_INV1 { get; set; }
 
         public DbSet<AppUsers> AppUser { get; set; }
+
+        public DbSet<ITN_ORDN> ITN_ORDN { get; set; }
+
+        public DbSet<ITN_RDN1> ITN_RDN1 { get; set; }
 
     }
 }
