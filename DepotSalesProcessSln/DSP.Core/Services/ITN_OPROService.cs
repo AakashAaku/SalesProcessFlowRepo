@@ -16,6 +16,11 @@ namespace DSP.Core.Services
             _itnRepository = itnRepository;
         }
 
+        public bool DeleteStockTransferRequest(string id)
+        {
+            return _itnRepository.DeleteStockTransferRequest(id);
+        }
+
         public ITN_OPRODTO GetAllStockTransferReq()
         {
 

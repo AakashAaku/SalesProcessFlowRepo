@@ -14,5 +14,7 @@ namespace DSP.Core.Interfaces
         bool UpdateStockTransferReq(ITN_OPRODTO str);
 
         ITN_OPRODTO GetStockTransferRequestById(string id);
+
+        bool DeleteStockTransferRequest(string id);
     }
 }

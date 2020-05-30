@@ -36,6 +36,13 @@ namespace DSP.DependencyContainer
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
             services.AddScoped<IPurchaseInvoiceService, PurchaseInvoiceService>();
             services.AddScoped<IPurchaseReturnService, PurchaseReturnService>();
+
+
+            services.AddScoped<IStockReceiptService, StockReceiptService>();
+            services.AddScoped<IStockReceiptRepository, StockReceiptRepository>();
+
+            services.AddScoped<IStockReturnService, StockReturnService>();
+            services.AddScoped<IStockReturnRepository, StockReturnRepository>();
         }
     }
 }

@@ -30,6 +30,21 @@ namespace DSP.Data.Repositories
             //_dbConnection = new SqlConnection(_connectionString);
         }
 
+        public bool DeleteStockTransferRequest(string Id)
+        {
+
+            int deletedRows = this.dbConnection.Execute("UPDATE ITN_OPRO SET DeletedFlag = 'N',UpdatedBy ='ADMIN',UpdatedDate =GETDATE() where Id = @Id", new { Id = Id });
+            if (deletedRows > 0)
+            {
+                int deletedRowsC = this.dbConnection.Execute("UPDATE ITN_PRO1 SET DeletedFlag = 'N',UpdatedBy ='ADMIN',UpdatedDate =GETDATE() where ITN_OPDNID = @Id", new { Id = Id });
+                if (deletedRowsC > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         //public bool DeleteStockTransferRequest(int Id)
         //{
         //    throw new NotImplementedException();

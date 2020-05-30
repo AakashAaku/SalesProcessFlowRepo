@@ -23,6 +23,11 @@ namespace DSP.Data.Context
            .HasOne<ITN_OPDN>(s => s.ITN_OPDN)
            .WithMany(g => g.ITN_PDN1)
            .HasForeignKey(s => s.ITN_OPDNID);
+
+            modelBuilder.Entity<ITN_RPD1>()
+         .HasOne<ITN_ORPD>(s => s.ITN_ORPD)
+         .WithMany(g => g.ITN_RPD1)
+         .HasForeignKey(s => s.ITN_ORPDID);
         }
 
 
@@ -36,5 +41,9 @@ namespace DSP.Data.Context
         public DbSet<ITN_OPDN> ITN_OPDN { get; set; }
 
         public DbSet<ITN_PDN1> ITN_PDN1 { get; set; }
+
+        public DbSet<ITN_ORPD> ITN_ORPD { get; set; }
+
+        public DbSet<ITN_RPD1> ITN_RPD1 { get; set; }
     }
 }
