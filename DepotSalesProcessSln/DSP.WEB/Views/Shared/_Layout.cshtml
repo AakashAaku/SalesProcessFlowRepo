@@ -32,9 +32,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        </li>*@
                         @*@if (User.Identity.IsAuthenticated)
         {
             if (User.IsInRole("Admin"))
@@ -45,16 +45,11 @@
                                 Admin
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @*<a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="Index">Customer</a>
-        <div class="dropdown-divider"></div>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateRole">Role</a>
-        <div class="dropdown-divider"></div>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateLicense">License</a>*@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateLicense">License Manager</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">User Creation</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="UserManager">User Creation</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="CreateRole">Configuration</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="">Configuration</a>
 
 
                             </div>

@@ -1,9 +1,22 @@
-﻿<form asp-controller="Admin" asp-action="CreateLicense" method="post" enctype="multipart/form-data">
+﻿@if(ViewBag.ErroMessage != null)
+{
+    <div class="alert alert-danger" style="margin-top:20px">
+        @ViewBag.ErroMessage
+    </div>
+}
+@if(ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success" style="margin-top:20px">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+<form asp-controller="Admin" asp-action="CreateLicense" method="post" enctype="multipart/form-data">
     <div class="input-group">
 
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile01"
-                   aria-describedby="inputGroupFileAddon01" accept=".csv,.txt" />
+            <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
+                   aria-describedby="inputGroupFileAddon01" accept=".csv,.txt"/> 
             <label class="custom-file-label" for="inputGroupFile01">Choose File</label>
         </div>
 
