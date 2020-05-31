@@ -5,8 +5,8 @@ using System.Text;
 
 namespace DSP.Core.Interfaces
 {
-    public interface ICustomersService
+    public interface IVendorCustomersService
     {
-        CustomersDTO GetAllCustomer();
+        VendorCustomersDTO GetAllCustomer();
     }
 }

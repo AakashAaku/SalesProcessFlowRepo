@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using DSP.Core.DTO;
 using DSP.Core.Interfaces;
 using DSP.WEB.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -21,14 +22,17 @@ namespace DSP.WEB.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IHostingEnvironment _hostingEnvironment;
-       
+        private readonly ILicenseService _licenseService;
+        private IVendorCustomersService _vendorCustomerService;
+
 
         // GET: /<controller>/
-        public AdminController(RoleManager<IdentityRole> roleManager,IHostingEnvironment hostingEnvironment)
+        public AdminController(RoleManager<IdentityRole> roleManager,IHostingEnvironment hostingEnvironment,ILicenseService licenseService,IVendorCustomersService vendorCustomersService)
         {
             this._roleManager = roleManager;
             this._hostingEnvironment = hostingEnvironment;
-           
+             this._licenseService = licenseService;
+            this._vendorCustomerService = vendorCustomersService;
         }
 
 
@@ -44,6 +48,25 @@ namespace DSP.WEB.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult CreateVendorCustomer()
+        {
+
+            var vendorList = _vendorCustomerService.GetAllCustomer();
+            var vendorList1 = new List<VendorCustomersDTO>();
+            vendorList1.Insert(0, new VendorCustomersDTO { Id = 0, Name = "Select" });
+            vendorList1.Add(new VendorCustomersDTO { Id = 1, Name = "text1" });
+            vendorList1.Add(new VendorCustomersDTO { Id = 2, Name = "text2" });
+            vendorList1.Add(new VendorCustomersDTO { Id = 3, Name = "text3" });
+            vendorList1.Add(new VendorCustomersDTO { Id = 4, Name = "text4" });
+            //vendorList.Customers.ElementAtOrDefault(0)
+
+            ViewBag.VendorCustomerList = vendorList1;
+            return View();
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> CreateRole(RoleViewModel modal)
@@ -71,14 +94,10 @@ namespace DSP.WEB.Controllers
         [HttpGet]
         public IActionResult CreateLicense() 
         {
-            var dictionary = new Dictionary<string, string>();
-            dictionary.Add("Admin", "12");
-            dictionary.Add("Branch", "10");
-            dictionary.Add("Depot", "7");
+           
+            var model = _licenseService.GetAllLicense();
 
-            ViewBag.License = dictionary;
-
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -109,37 +128,49 @@ namespace DSP.WEB.Controllers
                     System.IO.File.Delete(fileName);
                 }
                 await file.CopyToAsync(fs);
-                int intbuffer = 5242880;
-                byte[] b = new byte[intbuffer];
-                UTF8Encoding temp = new UTF8Encoding(true);
-                while (fs.Read(b, 0, b.Length) > 0)
-                {
-                    result.AppendLine(temp.GetString(b));
-                }
-
             }
 
+            var fileToRead = path + "\\" + Path.GetFileName(file.FileName);
+            string fileContext = await System.IO.File.ReadAllTextAsync(fileToRead);
+            var licenseModel = new List<LicensesDTO>();
+            if (fileExt == ".txt")
+            {
+                foreach (var row in fileContext.Split('\n'))
+                {
+                    if (!string.IsNullOrEmpty(row))
+                    {
+                       
+                        var modelData = new LicensesDTO
+                        {
+                            Id= Convert.ToInt32(row.Split('\t')[0]),
+                            Name= row.Split('\t')[0],
+                            LicenseVal= Convert.ToByte(row.Split('\t')[0])
+                        };
+                        licenseModel.Add(modelData);
+                    }
+                }
+            }
+            if (fileExt == ".csv")
+            {
+                foreach (var row in fileContext.Split('\n'))
+                {
+                    if (!string.IsNullOrEmpty(row))
+                    {
+                       
+                        var modelData = new LicensesDTO
+                        {
+                            Id = Convert.ToInt32(row.Split(',')[0]),
+                            Name = row.Split(',')[0],
+                            LicenseVal = Convert.ToByte(row.Split(',')[0])
+                        };
+                        licenseModel.Add(modelData);
+                    }
+                }
+            }
+
+            var licenseSavedResponse = _licenseService.SaveLicence(licenseModel); 
+
             
-            //var fileName = System.IO.Path.GetFileName(file.FileName);
-            //if (System.IO.File.Exists(fileName))
-            //{
-            //    System.IO.File.Delete(fileName);
-            //}
-
-            //string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-
-            //fileName = this.CheckCorrectFileName(fileName);
-
-            //using (FileStream output = System.IO.File.Create(this.GetPathAndFileName(fileName))) await file.CopyToAsync(output);
-
-            //var result = new StringBuilder();
-            //using (var stremReader = new StreamReader(file.OpenReadStream()))
-            //{
-            //    while (stremReader.Peek() > 0)
-            //    {
-            //        result.AppendLine(await stremReader.ReadLineAsync());
-            //    }
-            //}
 
             ViewBag.SuccessMessage = "File Uploaded Successfully";
             return View();
@@ -157,6 +188,8 @@ namespace DSP.WEB.Controllers
             return Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "\\uploads\\" + fileName);
         }
 
+
+       
         public IActionResult Index()
         {
             IEnumerable<IdentityRole> roleResult = _roleManager.Roles.ToList();

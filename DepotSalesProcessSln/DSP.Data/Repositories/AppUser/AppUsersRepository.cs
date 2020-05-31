@@ -8,12 +8,12 @@ namespace DSP.Data.Repositories.AppUser
 {
     public class AppUsersRepository : IAppUsersRepository
     {
-        public bool AddLicense(AppUsers licenses)
+        public bool AddLicense(DspUsers licenses)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<AppUsers> GetAllAppUsers()
+        public IEnumerable<DspUsers> GetAllAppUsers()
         {
             throw new NotImplementedException();
         }

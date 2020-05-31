@@ -1,0 +1,108 @@
+﻿@model DSP.Core.DTO.VendorCustomersDTO
+
+@{
+    ViewData["Title"] = "CreateVendorCustomer";
+}
+
+<h1>Vendor/Customer</h1>
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-row">
+
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.Type"></label>
+            <input asp-for="VendorCustomers.Type" class="form-control" placeholder="Type" />
+            <span asp-validation-for="VendorCustomers.Type" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.Code"></label>
+            <input asp-for="VendorCustomers.Code" class="form-control" placeholder="User Name" />
+            <span asp-validation-for="VendorCustomers.Code" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.Name"></label>
+            <input asp-for="VendorCustomers.Name" class="form-control" placeholder="Password" />
+            <span asp-validation-for="VendorCustomers.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.Reference"></label>
+            <input asp-for="VendorCustomers.Reference" class="form-control" />
+
+            <span asp-validation-for="VendorCustomers.Reference" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.Group"></label>
+            <input asp-for="VendorCustomers.Group" class="form-control" />
+
+            <span asp-validation-for="VendorCustomers.Group" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.ContactPerson"></label>
+            <input asp-for="VendorCustomers.ContactPerson" class="form-control" />
+
+            <span asp-validation-for="VendorCustomers.ContactPerson" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.Number"></label>
+            <input asp-for="VendorCustomers.Number" class="form-control" />
+
+            <span asp-validation-for="VendorCustomers.Number" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.Email"></label>
+            <input asp-for="VendorCustomers.Email" class="form-control" />
+            <span asp-validation-for="VendorCustomers.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.PANVAT"></label>
+            <input asp-for="VendorCustomers.PANVAT" class="form-control" />
+            <span asp-validation-for="VendorCustomers.PANVAT" class="text-danger"></span>
+        </div>
+
+        @*General tab div start here*@
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.ContactPerson"></label>
+            <input asp-for="VendorCustomers.ContactPerson" class="form-control" />
+
+            <span asp-validation-for="VendorCustomers.ContactPerson" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.EmailId"></label>
+            <input asp-for="VendorCustomers.EmailId" class="form-control" />
+            <span asp-validation-for="VendorCustomers.EmailId" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.ShipToAddress"></label>
+            <input asp-for="VendorCustomers.ShipToAddress" class="form-control" />
+            <span asp-validation-for="VendorCustomers.ShipToAddress" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.BillToAddress"></label>
+            <input asp-for="VendorCustomers.BillToAddress" class="form-control" />
+            <span asp-validation-for="VendorCustomers.BillToAddress" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="VendorCustomers.Remarks"></label>
+            <input asp-for="VendorCustomers.Remarks" class="form-control" />
+            <span asp-validation-for="VendorCustomers.Remarks" class="text-danger"></span>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="submit" class="btn btn-primary">Cancel</button>
+</form>

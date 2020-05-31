@@ -16,8 +16,8 @@ namespace DSP.DependencyContainer
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            services.AddScoped<ICustomersService, CustomerServices>();
-            services.AddScoped<ICustomersRepository, CustomersRepository>();
+            services.AddScoped<IVendorCustomersService, VendorCustomersServices>();
+            services.AddScoped<IVendorCustomersRepository, VendorCustomersRepository>();
 
             services.AddScoped<ILicenseService, LicenseService>();
             services.AddScoped<ILicenseRepository, LicenseRepository>();

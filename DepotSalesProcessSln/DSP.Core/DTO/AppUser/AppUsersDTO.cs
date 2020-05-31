@@ -7,6 +7,6 @@ namespace DSP.Core.DTO.AppUser
 {
     public class AppUsersDTO
     {
-        public AppUsers AppUser { get; set; }
+        public DspUsers AppUser { get; set; }
     }
 }

@@ -15,8 +15,12 @@ namespace DSP.Data.Repositories
             {
                 if (licenses.Count > 0)
                 {
-                    dbConnection.Execute("");
-                    return true;
+                    foreach(var lmodel in licenses)
+                    {
+                        dbConnection.Execute("INSERT INTO License(Type,License) VALUES(@Name,@License)",new {lmodel.Type,lmodel.License });
+                        return true;
+                    }
+                   
                 }
                 return false;
             }

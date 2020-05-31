@@ -43,7 +43,7 @@ namespace DSP.Data.Context
 
 
 
-            modelBuilder.Entity<AppUsers>()
+            modelBuilder.Entity<DspUsers>()
                 .Property(e => e.Type)
                 .HasConversion(t => t.ToString(), t => (UserType)Enum.Parse(typeof(UserType), t));
 
@@ -55,7 +55,7 @@ namespace DSP.Data.Context
  
 
 
-        public DbSet<Customers> Customers { get; set; }
+        public DbSet<VendorCustomers> Customers { get; set; }
         public DbSet<ITN_OPRO> ITN_OPRO { get; set; }
 
         public DbSet<ITN_PRO1> ITN_PRO1 { get; set; }
@@ -75,7 +75,8 @@ namespace DSP.Data.Context
 
         public DbSet<ITN_INV1> ITN_INV1 { get; set; }
 
-        public DbSet<AppUsers> AppUsers { get; set; } 
+        public DbSet<DspUsers> DspUsers { get; set; } 
+
         public DbSet<Licenses> Licenses { get; set; }
 
     }

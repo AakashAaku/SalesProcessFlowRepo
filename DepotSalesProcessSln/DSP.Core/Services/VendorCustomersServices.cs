@@ -7,18 +7,18 @@ using System.Text;
 
 namespace DSP.Core.Services
 {
-    public class CustomerServices : ICustomersService
+    public class VendorCustomersServices : IVendorCustomersService
     {
-        public ICustomersRepository _customerRepository;
+        public IVendorCustomersRepository _customerRepository;
 
-        public CustomerServices(ICustomersRepository customerRepository)
+        public VendorCustomersServices(IVendorCustomersRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
 
-        public CustomersDTO GetAllCustomer()
+        public VendorCustomersDTO GetAllCustomer()
         {
-            return new CustomersDTO
+            return new VendorCustomersDTO
             {
                 Customers = _customerRepository.GetAllCustomers()
             };

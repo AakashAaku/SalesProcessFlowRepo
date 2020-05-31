@@ -6,13 +6,14 @@ using System.Text;
 
 namespace DSP.Domain.Models
 {
-    public class AppUsers
+    public class DspUsers
     {
         [Key]
-        public int AppUserId { get; set; }
+        public int DspUsersId { get; set; }
 
         [Required]
         public UserType Type { get; set; }
+       
         
         [Required]
         public string UserName { get; set; }

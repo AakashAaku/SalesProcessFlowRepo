@@ -4,14 +4,16 @@ using DSP.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DSP.Data.Migrations
 {
     [DbContext(typeof(DSPMainDbContext))]
-    partial class DSPMainDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200530095302_Add_All_Table")]
+    partial class Add_All_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

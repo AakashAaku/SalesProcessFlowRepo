@@ -1,4 +1,5 @@
-﻿@if(ViewBag.ErroMessage != null)
+﻿@model DSP.Core.DTO.LicensesDTO
+@if(ViewBag.ErroMessage != null)
 {
     <div class="alert alert-danger" style="margin-top:20px">
         @ViewBag.ErroMessage
@@ -10,7 +11,7 @@
         @ViewBag.SuccessMessage
     </div>
 }
-
+@{var sn = 1; }
 <form asp-controller="Admin" asp-action="CreateLicense" method="post" enctype="multipart/form-data">
     <div class="input-group">
 
@@ -42,6 +43,15 @@
                 <th>Admin</th>
                 <th>12</th>
             </tr>
+            @foreach (var l in Model.Licenses)
+            { 
+                <tr>
+                    <th scope="row">@sn</th>
+                    <th>@l.Type</th>
+                    <th>@l.License</th>
+                </tr>
+                sn++;
+            }
         </tbody>
     </table>
 </div>

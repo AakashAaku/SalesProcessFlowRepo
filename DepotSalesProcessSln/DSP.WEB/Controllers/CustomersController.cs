@@ -15,16 +15,16 @@ namespace DSP.WEB.Controllers
     public class CustomersController : Controller
     {
 
-        private ICustomersService _customerService;
+        private IVendorCustomersService _customerService;
 
-        public CustomersController(ICustomersService customerService)
+        public CustomersController(IVendorCustomersService customerService)
         {
             _customerService = customerService;
         }
         // GET: /<controller>/
         public IActionResult Index()
         {
-            CustomersDTO customerDto = _customerService.GetAllCustomer();
+            VendorCustomersDTO customerDto = _customerService.GetAllCustomer();
             return View(customerDto);
         }
     }

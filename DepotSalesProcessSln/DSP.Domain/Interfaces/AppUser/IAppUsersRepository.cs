@@ -7,8 +7,8 @@ namespace DSP.Domain.Interfaces.AppUser
 {
     public interface IAppUsersRepository
     {
-        bool AddLicense(AppUsers licenses);
+        bool AddLicense(DspUsers licenses);
 
-        IEnumerable<AppUsers> GetAllAppUsers(); 
+        IEnumerable<DspUsers> GetAllAppUsers(); 
     }
 }
