@@ -9,4 +9,6 @@ namespace DSP.WEB.Data
     public class ApplicationUser:IdentityUser
     {
     }
+
+
 }

@@ -6,7 +6,10 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using DSP.Core.DTO;
+using DSP.Core.DTO.AppUser;
 using DSP.Core.Interfaces;
+using DSP.Core.Interfaces.AppUser;
+using DSP.WEB.Data;
 using DSP.WEB.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,15 +27,18 @@ namespace DSP.WEB.Controllers
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly ILicenseService _licenseService;
         private IVendorCustomersService _vendorCustomerService;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IAppUsersService _appUsersService;
 
 
         // GET: /<controller>/
-        public AdminController(RoleManager<IdentityRole> roleManager,IHostingEnvironment hostingEnvironment,ILicenseService licenseService,IVendorCustomersService vendorCustomersService)
+        public AdminController(RoleManager<IdentityRole> roleManager,IHostingEnvironment hostingEnvironment, UserManager<ApplicationUser> userManager)
         {
             this._roleManager = roleManager;
             this._hostingEnvironment = hostingEnvironment;
-             this._licenseService = licenseService;
-            this._vendorCustomerService = vendorCustomersService;
+            _userManager = userManager;
+            // this._licenseService = licenseService;
+            //this._vendorCustomerService = vendorCustomersService;
         }
 
 
@@ -46,6 +52,44 @@ namespace DSP.WEB.Controllers
         [HttpGet]
         public IActionResult UserManager()
         {
+            //var vendorList = _vendorCustomerService.GetAllCustomer();
+            var vendorList1 = new List<VendorCustomersDTO>();
+            vendorList1.Insert(0, new VendorCustomersDTO { Id = 0, Name = "Select Vendor/Customer" });
+            vendorList1.Add(new VendorCustomersDTO { Id = 1, Name = "text1" });
+            vendorList1.Add(new VendorCustomersDTO { Id = 2, Name = "text2" });
+            vendorList1.Add(new VendorCustomersDTO { Id = 3, Name = "text3" });
+            vendorList1.Add(new VendorCustomersDTO { Id = 4, Name = "text4" });
+            ViewBag.VendorCustomerList = vendorList1;
+
+
+            //var licenseList = _licenseService.GetAllLicense();
+            var licenseList = new List<LicensesDTO>();
+            licenseList.Insert(0, new LicensesDTO { Id = 0, Name = "Select License" });
+            licenseList.Add(new LicensesDTO { Id = 1, Name = "text1" });
+            licenseList.Add(new LicensesDTO { Id = 2, Name = "text2" });
+            licenseList.Add(new LicensesDTO { Id = 3, Name = "text3" });
+            licenseList.Add(new LicensesDTO { Id = 4, Name = "text4" });
+            ViewBag.LicenseAssignList = licenseList;
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UserManager(AppUsersDTO userModal)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = userModal.AppUser.UserName, Email = userModal.AppUser.EmailAddress };
+                var result = await _userManager.CreateAsync(user, userModal.AppUser.Password);
+                if (result.Succeeded)
+                {
+                    _appUsersService.SaveAppUser(userModal);
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
             return View();
         }
 
@@ -53,16 +97,10 @@ namespace DSP.WEB.Controllers
         public IActionResult CreateVendorCustomer()
         {
 
-            var vendorList = _vendorCustomerService.GetAllCustomer();
-            var vendorList1 = new List<VendorCustomersDTO>();
-            vendorList1.Insert(0, new VendorCustomersDTO { Id = 0, Name = "Select" });
-            vendorList1.Add(new VendorCustomersDTO { Id = 1, Name = "text1" });
-            vendorList1.Add(new VendorCustomersDTO { Id = 2, Name = "text2" });
-            vendorList1.Add(new VendorCustomersDTO { Id = 3, Name = "text3" });
-            vendorList1.Add(new VendorCustomersDTO { Id = 4, Name = "text4" });
+           
             //vendorList.Customers.ElementAtOrDefault(0)
 
-            ViewBag.VendorCustomerList = vendorList1;
+           
             return View();
         }
 
