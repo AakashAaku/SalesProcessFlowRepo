@@ -8,5 +8,6 @@ namespace DSP.Core.DTO
     public class PurchaseOrderDTO
     {
         public IEnumerable<ITN_BOPOR> PurchaseOrder { get; set; }
+        public ITN_BOPOR PurOrd { get; set; }
     }
 }

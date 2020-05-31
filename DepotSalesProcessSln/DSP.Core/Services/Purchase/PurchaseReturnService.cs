@@ -15,7 +15,7 @@ namespace DSP.Core.Services.Purchase
         {
             _iPurchaseReturnRepository = iPurchaseReturnRepository;
         }
-        public PurchseReturnDTO GetPurchaseInvoice(string id)
+        public PurchseReturnDTO GetPurchaseReturn(string id)
         {
             return new PurchseReturnDTO
             {

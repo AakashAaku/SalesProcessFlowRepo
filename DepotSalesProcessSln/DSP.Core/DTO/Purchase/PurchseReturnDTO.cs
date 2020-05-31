@@ -8,5 +8,6 @@ namespace DSP.Core.DTO
     public class PurchseReturnDTO
     {
         public IEnumerable<ITN_BORPD> PurchaseReturn { get; set; }
+        public ITN_BORPD PurRet { get; set; }
     }
 }

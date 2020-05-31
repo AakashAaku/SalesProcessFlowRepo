@@ -8,5 +8,6 @@ namespace DSP.Core.DTO
     public class InOutPaymentDTO
     {
         public IEnumerable<ITN_BOVPM> InOutPayment { get; set; }
+        public ITN_BOVPM InOutPay { get; set; }
     }
 }

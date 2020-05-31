@@ -1,0 +1,99 @@
+﻿@model DSP.Core.DTO.PurchseReturnDTO
+@{
+    ViewData["Title"] = "GetPurchaseReturn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetPurchaseReturn</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">S.N.</th>
+            <th scope="col">PanVatNumber</th>
+            <th scope="col">VendorName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Branch</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PurchaseReturn)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PanVatNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Branch)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CustVenCode)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CustVenFlag)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.RefernceNo)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.DocumentNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostingDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreditCard)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cash)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BankTransfer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DocumnentOwner)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remarks)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeletedFlag)
+                    </td>*@
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

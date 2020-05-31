@@ -8,7 +8,7 @@ namespace DSP.Core.Interfaces.Purchase
 {
     public interface IPurchaseReturnService
     {
-        PurchseReturnDTO GetPurchaseInvoice(string id);
+        PurchseReturnDTO GetPurchaseReturn(string id);
         bool DeletePurchaseReturn(string id);
         bool SaveUpdatePurchaseReturn(ITN_BORPD objiTN_BOVPM);
     }
